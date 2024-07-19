@@ -64,7 +64,6 @@ function generateTonicConfig(fov: string) {
                 fileUid: "segmentation",
                 obsType: "cell",
             },
-            // options: undefined
             options: {
                 obsTypesFromChannelNames: true,
             },
@@ -72,17 +71,22 @@ function generateTonicConfig(fov: string) {
 
     // Create Views
     const spatialView = config
+        // @ts-ignore
         .addView(dataset, "spatialBeta")
         .setProps({ title: "Cell Segmentation" });
     const lcView = config
+        // @ts-ignore
         .addView(dataset, "layerControllerBeta")
         .setProps({ title: "Layers" });
     const obsSetsView = config
+        // @ts-ignore
         .addView(dataset, "obsSets")
         .setProps({ title: "Cell Types" });
     const featureListView = config
+        // @ts-ignore
         .addView(dataset, "featureList")
         .setProps({ title: "Marker List", variablesLabelOverride: "Markers" });
+    // @ts-ignore
     const obsSetsSizesView = config.addView(dataset, "obsSetSizes");
 
     // Cell Segmentation Scopes
