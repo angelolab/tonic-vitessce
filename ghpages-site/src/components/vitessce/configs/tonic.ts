@@ -11,7 +11,7 @@ function generateTonicConfig(fov: string) {
     const config = new VitessceConfig({
         schemaVersion: "1.0.16",
         name: fov,
-        description: "Example",
+        description: fov,
     });
     const fov_path = `https://angelolab-vitessce-vizualizations.s3.amazonaws.com/tonic/${fov.toUpperCase()}`;
 
