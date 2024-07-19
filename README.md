@@ -7,7 +7,7 @@
 [link-tests]: https://github.com/angelolab/tonic-vitessce/actions/workflows/test.yml
 [badge-docs]: https://img.shields.io/readthedocs/tonic-vitessce
 
-Vitessce Configs and Data Conversion for the dataset.
+Vitessce Configs and Data Conversion for the TONIC Publication.
 
 ## Getting started
 
@@ -18,7 +18,7 @@ Please refer to the [documentation][link-docs]. In particular, the
 ## Installation
 
 You need to have Python 3.10 or newer installed on your system. If you don't have
-Python installed, we recommend installing [Mambaforge](https://github.com/conda-forge/miniforge#mambaforge).
+Python installed, we recommend installing [Mambaforge](https://github.com/conda-forge/miniforge#mambaforge) or [Rye](https://github.com/astral-sh/rye) if you prefer `.venvs`.
 
 There are several alternative options to install tonic-vitessce:
 
