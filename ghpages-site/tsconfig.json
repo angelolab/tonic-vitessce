@@ -1,0 +1,16 @@
+{
+    "extends": "astro/tsconfigs/strict",
+    "compilerOptions": {
+        "jsx": "react-jsx",
+        "jsxImportSource": "react",
+        "verbatimModuleSyntax": true,
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["src/*"],
+            "@ui/*": ["src/components/ui/*"],
+            "@vitessce_configs/*": ["src/components/vitessce/configs/*"],
+            "@vitessce_components/*": ["src/components/vitessce/*"],
+            "@custom_components/*": ["src/components/custom/*"]
+        }
+    }
+}

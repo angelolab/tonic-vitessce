@@ -1,0 +1,30 @@
+---
+export function getStaticPaths() {
+    return [
+        { params: { fov: "tonic_tma5_r1c2" } },
+        { params: { fov: "tonic_tma5_r5c1" } },
+        { params: { fov: "tonic_tma7_r4c6" } },
+        { params: { fov: "tonic_tma9_r4c6" } },
+        { params: { fov: "tonic_tma14_r7c6" } },
+        { params: { fov: "tonic_tma15_r7c2" } },
+        { params: { fov: "tonic_tma15_r10c1" } },
+        { params: { fov: "tonic_tma17_r12c4" } },
+        { params: { fov: "tonic_tma18_r2c3" } },
+        { params: { fov: "tonic_tma23_r10c1" } },
+    ];
+}
+
+const { fov } = Astro.params;
+
+import "@/styles/globals.css";
+import Tonic from "@vitessce_components/Tonic";
+
+---
+
+<html lang="en">
+    <head>
+        <title>{fov}</title>
+    </head>
+    <Tonic fov={fov} client:only="react" />
+
+</html>
