@@ -3,7 +3,7 @@ build-backend = "hatchling.build"
 requires = ["hatchling"]
 
 [project]
-name = "tonic-vitessce"
+name = "angelolab-vitessce"
 version = "0.0.1"
 description = "Vitessce Configs and Data Conversion for the dataset."
 readme = "README.md"
@@ -23,6 +23,7 @@ dependencies = [
     # for debug logging (referenced from the issue template)
     "session-info",
     "vitessce[all]>=3.2.6",
+    "universal-pathlib>=0.2.2",
 ]
 
 [project.optional-dependencies]

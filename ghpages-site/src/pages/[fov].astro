@@ -1,24 +1,33 @@
 ---
 export function getStaticPaths() {
-    return [
-        { params: { fov: "tonic_tma5_r1c2" } },
-        { params: { fov: "tonic_tma5_r5c1" } },
-        { params: { fov: "tonic_tma7_r4c6" } },
-        { params: { fov: "tonic_tma9_r4c6" } },
-        { params: { fov: "tonic_tma14_r7c6" } },
-        { params: { fov: "tonic_tma15_r7c2" } },
-        { params: { fov: "tonic_tma15_r10c1" } },
-        { params: { fov: "tonic_tma17_r12c4" } },
-        { params: { fov: "tonic_tma18_r2c3" } },
-        { params: { fov: "tonic_tma23_r10c1" } },
-    ];
+	return [
+		{ params: { fov: "TONIC_TMA2_R1C3" } },
+		{ params: { fov: "TONIC_TMA2_R2C1" } },
+		{ params: { fov: "TONIC_TMA2_R4C1" } },
+		{ params: { fov: "TONIC_TMA2_R4C6" } },
+		{ params: { fov: "TONIC_TMA13_R10C1" } },
+		{ params: { fov: "TONIC_TMA13_R11C3" } },
+		{ params: { fov: "TONIC_TMA13_R11C4" } },
+		{ params: { fov: "TONIC_TMA13_R11C5" } },
+		{ params: { fov: "TONIC_TMA14_R7C2" } },
+		{ params: { fov: "TONIC_TMA14_R7C3" } },
+		{ params: { fov: "TONIC_TMA14_R7C4" } },
+		{ params: { fov: "TONIC_TMA14_R10C1" } },
+		{ params: { fov: "TONIC_TMA14_R10C2" } },
+		{ params: { fov: "TONIC_TMA14_R10C4" } },
+		{ params: { fov: "TONIC_TMA14_R11C4" } },
+		{ params: { fov: "TONIC_TMA14_R11C5" } },
+		{ params: { fov: "TONIC_TMA14_R12C3" } },
+		{ params: { fov: "TONIC_TMA15_R2C4" } },
+		{ params: { fov: "TONIC_TMA15_R3C2" } },
+		{ params: { fov: "TONIC_TMA15_R6C4" } },
+	];
 }
 
 const { fov } = Astro.params;
 
 import "@/styles/globals.css";
 import Tonic from "@vitessce_components/Tonic";
-
 ---
 
 <html lang="en">

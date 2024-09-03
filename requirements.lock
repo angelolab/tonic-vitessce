@@ -12,11 +12,13 @@
 -e file:.
 accessible-pygments==0.0.5
     # via pydata-sphinx-theme
-aiobotocore==2.13.1
+aiobotocore==2.13.3
     # via s3fs
 aiofiles==24.1.0
     # via vitessce
-aiohttp==3.9.5
+aiohappyeyeballs==2.4.0
+    # via aiohttp
+aiohttp==3.10.5
     # via aiobotocore
     # via jupyter-server-proxy
     # via ome-zarr
@@ -25,11 +27,11 @@ aioitertools==0.11.0
     # via aiobotocore
 aiosignal==1.3.1
     # via aiohttp
-alabaster==0.7.16
+alabaster==1.0.0
     # via sphinx
 anndata==0.10.8
+    # via angelolab-vitessce
     # via scanpy
-    # via tonic-vitessce
     # via vitessce
 anyio==4.4.0
     # via jupyter-server
@@ -41,7 +43,7 @@ argon2-cffi==23.1.0
     # via jupyter-server
 argon2-cffi-bindings==21.2.0
     # via argon2-cffi
-array-api-compat==1.7.1
+array-api-compat==1.8
     # via anndata
 arrow==1.3.0
     # via isoduration
@@ -49,12 +51,12 @@ asciitree==0.3.3
     # via zarr
 asttokens==2.4.1
     # via stack-data
-attrs==23.2.0
+attrs==24.2.0
     # via aiohttp
     # via jsonschema
     # via jupyter-cache
     # via referencing
-babel==2.15.0
+babel==2.16.0
     # via pydata-sphinx-theme
     # via sphinx
 backports-tarfile==1.2.0
@@ -62,19 +64,19 @@ backports-tarfile==1.2.0
 beautifulsoup4==4.12.3
     # via nbconvert
     # via pydata-sphinx-theme
-black==24.4.2
+black==24.8.0
     # via vitessce
 bleach==6.1.0
     # via nbconvert
-bokeh==3.5.0
+bokeh==3.5.1
     # via dask
-botocore==1.34.131
+botocore==1.34.162
     # via aiobotocore
-buckaroo==0.6.11
-    # via tonic-vitessce
+buckaroo==0.6.12
+    # via angelolab-vitessce
 certifi==2024.7.4
     # via requests
-cffi==1.16.0
+cffi==1.17.0
     # via argon2-cffi-bindings
 cfgv==3.4.0
     # via pre-commit
@@ -95,21 +97,21 @@ comm==0.2.2
 contourpy==1.2.1
     # via bokeh
     # via matplotlib
-coverage==7.6.0
-    # via tonic-vitessce
+coverage==7.6.1
+    # via angelolab-vitessce
 cycler==0.12.1
     # via matplotlib
-dask==2024.7.0
+dask==2024.8.1
+    # via angelolab-vitessce
     # via dask-expr
     # via dask-image
     # via distributed
     # via ome-zarr
-    # via tonic-vitessce
-dask-expr==1.1.7
+dask-expr==1.1.11
     # via dask
 dask-image==2024.5.3
-    # via tonic-vitessce
-debugpy==1.8.2
+    # via angelolab-vitessce
+debugpy==1.8.5
     # via ipykernel
 decorator==5.1.1
     # via ipython
@@ -117,17 +119,17 @@ defusedxml==0.7.1
     # via nbconvert
 distlib==0.3.8
     # via virtualenv
-distributed==2024.7.0
+distributed==2024.8.1
     # via dask
     # via ome-zarr
 docutils==0.21.2
+    # via angelolab-vitessce
     # via myst-parser
     # via pybtex-docutils
     # via pydata-sphinx-theme
     # via readme-renderer
     # via sphinx
     # via sphinxcontrib-bibtex
-    # via tonic-vitessce
 esbuild-py==0.1.5
     # via vitessce
 executing==2.0.1
@@ -149,6 +151,7 @@ fsspec==2024.6.1
     # via dask
     # via ome-zarr
     # via s3fs
+    # via universal-pathlib
 generate-tiff-offsets==0.1.7
     # via vitessce
 graphlib-backport==1.1.0
@@ -165,12 +168,12 @@ idna==3.7
     # via jsonschema
     # via requests
     # via yarl
-imageio==2.34.2
+imageio==2.35.1
     # via pims
     # via scikit-image
 imagesize==1.4.1
     # via sphinx
-importlib-metadata==8.0.0
+importlib-metadata==8.4.0
     # via dask
     # via jupyter-cache
     # via keyring
@@ -179,23 +182,23 @@ importlib-metadata==8.0.0
 iniconfig==2.0.0
     # via pytest
 ipykernel==6.29.5
+    # via angelolab-vitessce
     # via myst-nb
-    # via tonic-vitessce
 ipython==8.26.0
+    # via angelolab-vitessce
     # via ipykernel
     # via ipywidgets
     # via myst-nb
-    # via tonic-vitessce
-ipywidgets==8.1.3
+ipywidgets==8.1.5
     # via anywidget
     # via buckaroo
 isoduration==20.11.0
     # via jsonschema
 jaraco-classes==3.4.0
     # via keyring
-jaraco-context==5.3.0
+jaraco-context==6.0.1
     # via keyring
-jaraco-functools==4.0.1
+jaraco-functools==4.0.2
     # via keyring
 jedi==0.19.1
     # via ipython
@@ -236,7 +239,7 @@ jupyter-core==5.7.2
     # via nbformat
 jupyter-events==0.10.0
     # via jupyter-server
-jupyter-server==2.14.1
+jupyter-server==2.14.2
     # via jupyter-server-proxy
 jupyter-server-proxy==4.3.0
     # via vitessce
@@ -244,9 +247,9 @@ jupyter-server-terminals==0.5.3
     # via jupyter-server
 jupyterlab-pygments==0.3.0
     # via nbconvert
-jupyterlab-widgets==3.0.11
+jupyterlab-widgets==3.0.13
     # via ipywidgets
-keyring==25.2.1
+keyring==25.3.0
     # via twine
 kiwisolver==1.4.5
     # via matplotlib
@@ -271,7 +274,7 @@ markdown-it-py==3.0.0
 markupsafe==2.1.5
     # via jinja2
     # via nbconvert
-matplotlib==3.9.1
+matplotlib==3.9.2
     # via scanpy
     # via seaborn
 matplotlib-inline==0.1.7
@@ -283,7 +286,7 @@ mdurl==0.1.2
     # via markdown-it-py
 mistune==3.0.2
     # via nbconvert
-more-itertools==10.3.0
+more-itertools==10.4.0
     # via jaraco-classes
     # via jaraco-functools
 msgpack==1.0.8
@@ -294,8 +297,8 @@ multidict==6.0.5
 mypy-extensions==1.0.0
     # via black
 myst-nb==1.1.1
-    # via tonic-vitessce
-myst-parser==3.0.1
+    # via angelolab-vitessce
+myst-parser==4.0.0
     # via myst-nb
 natsort==8.4.0
     # via anndata
@@ -327,7 +330,7 @@ numba==0.60.0
     # via pynndescent
     # via scanpy
     # via umap-learn
-numcodecs==0.12.1
+numcodecs==0.13.0
     # via vitessce
     # via zarr
 numpy==1.26.4
@@ -365,6 +368,7 @@ packaging==24.1
     # via anndata
     # via black
     # via bokeh
+    # via buckaroo
     # via dask
     # via distributed
     # via ipykernel
@@ -380,6 +384,7 @@ packaging==24.1
     # via sphinx
     # via statsmodels
 pandas==2.2.2
+    # via angelolab-vitessce
     # via anndata
     # via bokeh
     # via dask
@@ -388,7 +393,6 @@ pandas==2.2.2
     # via scanpy
     # via seaborn
     # via statsmodels
-    # via tonic-vitessce
     # via vitessce
 pandocfilters==1.5.1
     # via nbconvert
@@ -418,8 +422,8 @@ platformdirs==4.2.2
     # via virtualenv
 pluggy==1.5.0
     # via pytest
-pre-commit==3.7.1
-    # via tonic-vitessce
+pre-commit==3.8.0
+    # via angelolab-vitessce
 prometheus-client==0.20.0
     # via jupyter-server
 prompt-toolkit==3.0.47
@@ -432,9 +436,9 @@ psygnal==0.11.1
 ptyprocess==0.7.0
     # via pexpect
     # via terminado
-pure-eval==0.2.2
+pure-eval==0.2.3
     # via stack-data
-pyarrow==16.1.0
+pyarrow==17.0.0
     # via dask
     # via dask-expr
 pyarrow-hotfix==0.6
@@ -461,8 +465,8 @@ pynndescent==0.5.13
     # via umap-learn
 pyparsing==3.1.2
     # via matplotlib
-pytest==8.2.2
-    # via tonic-vitessce
+pytest==8.3.2
+    # via angelolab-vitessce
 python-dateutil==2.9.0.post0
     # via arrow
     # via botocore
@@ -473,9 +477,9 @@ python-json-logger==2.0.7
     # via jupyter-events
 pytz==2024.1
     # via pandas
-pywavelets==1.6.0
+pywavelets==1.7.0
     # via scikit-image
-pyyaml==6.0.1
+pyyaml==6.0.2
     # via bokeh
     # via dask
     # via distributed
@@ -485,7 +489,7 @@ pyyaml==6.0.1
     # via myst-parser
     # via pre-commit
     # via pybtex
-pyzmq==26.0.3
+pyzmq==26.2.0
     # via ipykernel
     # via jupyter-client
     # via jupyter-server
@@ -512,7 +516,7 @@ rfc3986-validator==0.1.1
     # via jupyter-events
 rich==13.7.1
     # via twine
-rpds-py==0.19.0
+rpds-py==0.20.0
     # via jsonschema
     # via referencing
 s3fs==2024.6.1
@@ -525,7 +529,7 @@ scikit-learn==1.5.1
     # via pynndescent
     # via scanpy
     # via umap-learn
-scipy==1.14.0
+scipy==1.14.1
     # via anndata
     # via dask-image
     # via pynndescent
@@ -540,10 +544,10 @@ seaborn==0.13.2
 send2trash==1.8.3
     # via jupyter-server
 session-info==1.0.0
+    # via angelolab-vitessce
     # via scanpy
-    # via tonic-vitessce
-setuptools==70.3.0
-    # via tonic-vitessce
+setuptools==73.0.1
+    # via angelolab-vitessce
 simpervisor==1.0.0
     # via jupyter-server-proxy
 six==1.16.0
@@ -561,9 +565,10 @@ snowballstemmer==2.2.0
     # via sphinx
 sortedcontainers==2.4.0
     # via distributed
-soupsieve==2.5
+soupsieve==2.6
     # via beautifulsoup4
-sphinx==7.3.7
+sphinx==8.0.2
+    # via angelolab-vitessce
     # via myst-nb
     # via myst-parser
     # via pydata-sphinx-theme
@@ -572,30 +577,29 @@ sphinx==7.3.7
     # via sphinx-copybutton
     # via sphinxcontrib-bibtex
     # via sphinxext-opengraph
-    # via tonic-vitessce
-sphinx-autodoc-typehints==2.2.2
-    # via tonic-vitessce
+sphinx-autodoc-typehints==2.2.3
+    # via angelolab-vitessce
 sphinx-book-theme==1.1.3
-    # via tonic-vitessce
+    # via angelolab-vitessce
 sphinx-copybutton==0.5.2
-    # via tonic-vitessce
-sphinxcontrib-applehelp==1.0.8
+    # via angelolab-vitessce
+sphinxcontrib-applehelp==2.0.0
     # via sphinx
 sphinxcontrib-bibtex==2.6.2
-    # via tonic-vitessce
-sphinxcontrib-devhelp==1.0.6
+    # via angelolab-vitessce
+sphinxcontrib-devhelp==2.0.0
     # via sphinx
-sphinxcontrib-htmlhelp==2.0.5
+sphinxcontrib-htmlhelp==2.1.0
     # via sphinx
 sphinxcontrib-jsmath==1.0.1
     # via sphinx
-sphinxcontrib-qthelp==1.0.7
+sphinxcontrib-qthelp==2.0.0
     # via sphinx
-sphinxcontrib-serializinghtml==1.1.10
+sphinxcontrib-serializinghtml==2.0.0
     # via sphinx
 sphinxext-opengraph==0.9.1
-    # via tonic-vitessce
-sqlalchemy==2.0.31
+    # via angelolab-vitessce
+sqlalchemy==2.0.32
     # via jupyter-cache
 stack-data==0.6.3
     # via ipython
@@ -635,7 +639,7 @@ tornado==6.4.1
     # via jupyter-server
     # via jupyter-server-proxy
     # via terminado
-tqdm==4.66.4
+tqdm==4.66.5
     # via scanpy
     # via umap-learn
     # via vitessce
@@ -654,8 +658,8 @@ traitlets==5.14.3
     # via nbconvert
     # via nbformat
 twine==5.1.1
-    # via tonic-vitessce
-types-python-dateutil==2.9.0.20240316
+    # via angelolab-vitessce
+types-python-dateutil==2.9.0.20240821
     # via arrow
 typing-extensions==4.12.2
     # via anywidget
@@ -669,6 +673,8 @@ ujson==5.10.0
     # via vitessce
 umap-learn==0.5.6
     # via scanpy
+universal-pathlib==0.2.2
+    # via angelolab-vitessce
 uri-template==1.3.0
     # via jsonschema
 urllib3==2.2.2
@@ -676,22 +682,22 @@ urllib3==2.2.2
     # via distributed
     # via requests
     # via twine
-uvicorn==0.30.1
+uvicorn==0.30.6
     # via vitessce
 virtualenv==20.26.3
     # via pre-commit
-vitessce==3.2.7
-    # via tonic-vitessce
+vitessce==3.3.1
+    # via angelolab-vitessce
 wcwidth==0.2.13
     # via prompt-toolkit
-webcolors==24.6.0
+webcolors==24.8.0
     # via jsonschema
 webencodings==0.5.1
     # via bleach
     # via tinycss2
 websocket-client==1.8.0
     # via jupyter-server
-widgetsnbextension==4.0.11
+widgetsnbextension==4.0.13
     # via ipywidgets
 wrapt==1.16.0
     # via aiobotocore
@@ -704,5 +710,5 @@ zarr==2.18.2
     # via vitessce
 zict==3.0.0
     # via distributed
-zipp==3.19.2
+zipp==3.20.0
     # via importlib-metadata

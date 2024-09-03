@@ -3,7 +3,6 @@ import {
     CoordinationLevel as CL,
     hconcat,
     vconcat,
-    FileType as ft,
     CoordinationType as ct,
 } from "vitessce";
 
@@ -13,12 +12,12 @@ function generateTonicConfig(fov: string) {
         name: fov,
         description: fov,
     });
-    const fov_path = `https://angelolab-vitessce-vizualizations.s3.amazonaws.com/tonic/${fov.toUpperCase()}`;
+    const fov_path = `https://angelolab-vitessce.s3.amazonaws.com/tonic/${fov.toUpperCase()}`;
 
     const dataset = config
         .addDataset(fov)
         .addFile({
-            fileType: ft.IMAGE_OME_ZARR,
+            fileType: "image.ome-zarr",
             url: `${fov_path}/image.ome.zarr`,
             coordinationValues: {
                 fileUid: "fov-image",
