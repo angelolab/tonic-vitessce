@@ -1,4 +1,3 @@
-from pathlib import Path
 from typing import Literal
 
 import anndata as ad
@@ -6,10 +5,14 @@ import natsort as ns
 import numpy as np
 import pandas as pd
 from tifffile import imread
+from upath import UPath
 from vitessce.data_utils import VAR_CHUNK_SIZE, multiplex_img_to_ome_zarr, optimize_adata, optimize_arr
-from zarr import consolidate_metadata
+from zarr import ZipStore, consolidate_metadata
 
-from tonic_vitessce.core import SegmentationMasks, WholeCellTableColumns
+from angelolab_vitessce.tonic.constants import SegmentationMasksConstants, WholeCellTableConstants
+
+WholeCellTableColumns = WholeCellTableConstants()
+SegmentationMasks = SegmentationMasksConstants()
 
 
 def extract_fov_table(cell_table_df: pd.DataFrame, cell_compartment_df: pd.DataFrame, fov: str) -> pd.DataFrame:
@@ -64,10 +67,11 @@ def extract_fov_table(cell_table_df: pd.DataFrame, cell_compartment_df: pd.DataF
 def optimize_and_write_adata(
     fov_df: pd.DataFrame,
     fov: str,
-    segmentation_dir: Path,
-    vitessce_fovs_path: Path,
+    segmentation_dir: UPath,
+    vitessce_fovs_path: UPath,
     var_cols: list[str],
     obs_cols: list[str],
+    zarr_store_type: Literal["zip", "directory"] = "directory",
 ):
     """Creates the `AnnData` object for a given FOV, optimizes it and writes it to disk.
 
@@ -96,22 +100,25 @@ def optimize_and_write_adata(
     fov_optimized_adata = optimize_adata(adata=fov_adata, optimize_X=True)
 
     if not (vitessce_fov_path := vitessce_fovs_path / fov).exists():
-        vitessce_fovs_path.mkdir(parents=True, exist_ok=True)
+        vitessce_fov_path.mkdir(parents=True, exist_ok=True)
 
     fov_optimized_adata.strings_to_categoricals()
+    if zarr_store_type == "zip":
+        store_path = ZipStore(path=vitessce_fov_path / "whole_cell_table.anndata.zarr.zip", mode="w")
+    else:
+        store_path = vitessce_fov_path / "whole_cell_table.anndata.zarr"
 
-    fov_adata_zarr_store = vitessce_fov_path / "whole_cell_table.anndata.zarr"
-
-    fov_optimized_adata.write_zarr(store=fov_adata_zarr_store, chunks=[fov_optimized_adata.shape[0], VAR_CHUNK_SIZE])
-    consolidate_metadata(store=fov_adata_zarr_store)
+    fov_optimized_adata.write_zarr(store=store_path, chunks=[fov_optimized_adata.shape[0], VAR_CHUNK_SIZE])
+    consolidate_metadata(store=store_path)
 
 
 def convert_fov_to_zarr(
-    fovs_dir: Path,
+    fovs_dir: UPath,
     fov: str,
-    vitessce_fovs_path: Path,
+    vitessce_fovs_path: UPath,
     channels: list[str] | None = None,
     channel_colormap: dict | None = None,
+    zarr_store_type: Literal["zip", "directory"] = "directory",
 ) -> None:
     """Converts the field of view (a folder of TIFFs) into a Zarr Store.
 
@@ -135,7 +142,11 @@ def convert_fov_to_zarr(
     fov_img = optimize_arr(arr=imread(files=channel_paths))
 
     if not (vitessce_fov_path := vitessce_fovs_path / fov).exists():
-        vitessce_fovs_path.mkdir(parents=True, exist_ok=True)
+        vitessce_fov_path.mkdir(parents=True, exist_ok=True)
+    if zarr_store_type == "zip":
+        store_path = ZipStore(path=vitessce_fov_path / "image.ome.zarr.zip", mode="w")
+    else:
+        store_path = vitessce_fov_path / "image.ome.zarr"
 
     multiplex_img_to_ome_zarr(
         img_arr=fov_img,
@@ -144,15 +155,17 @@ def convert_fov_to_zarr(
         axes="cyx",
         chunks=(1, 256, 256),
         channel_colors=channel_colormap,
-        output_path=vitessce_fov_path / "image.ome.zarr",
+        output_path=store_path,
     )
+    consolidate_metadata(store=store_path)
 
 
 def convert_segmentation_to_zarr(
     fov: str,
     segmentation_mask_type: Literal["cell_segmentation"] | Literal["compartment"],
-    segmentation_dir: Path,
-    vitessce_fovs_path: Path,
+    segmentation_dir: UPath,
+    vitessce_fovs_path: UPath,
+    zarr_store_type: Literal["zip", "directory"] = "directory",
 ) -> None:
     """Converts TIFF cell segmentation masks or compartment segmentation masks to OME-ZARR files.
 
@@ -166,7 +179,8 @@ def convert_segmentation_to_zarr(
         The directory containing the specific segmentation masks.
     vitessce_fovs_path : Path
         The output directory to place the segmentation masks.
-
+    zarr_store_type : Literal["zip", "directory"]
+        The type of Zarr store to use.
     """
     if segmentation_mask_type == "cell_segmentation":
         segmentation_masks = ns.natsorted(
@@ -179,13 +193,18 @@ def convert_segmentation_to_zarr(
 
     segmentation_array = optimize_arr(arr=imread(files=segmentation_masks).astype("int").squeeze())
     if not (vitessce_fov_path := vitessce_fovs_path / fov).exists():
-        vitessce_fovs_path.mkdir(parents=True, exist_ok=True)
+        vitessce_fov_path.mkdir(parents=True, exist_ok=True)
 
     channel_names = (
         SegmentationMasks.compartments
         if segmentation_mask_type == "compartment"
         else SegmentationMasks.cell_segmentation
     )
+    if zarr_store_type == "zip":
+        store_path = ZipStore(path=vitessce_fov_path / f"{segmentation_mask_type}.ome.zarr.zip", mode="w")
+    else:
+        store_path = vitessce_fov_path / f"{segmentation_mask_type}.ome.zarr"
+
     multiplex_img_to_ome_zarr(
         img_arr=segmentation_array,
         channel_names=channel_names,
@@ -193,5 +212,6 @@ def convert_segmentation_to_zarr(
         axes="cyx",
         chunks=(1, 256, 256),
         channel_colors=None,
-        output_path=vitessce_fov_path / f"{segmentation_mask_type}.ome.zarr",
+        output_path=store_path,
     )
+    consolidate_metadata(store=store_path)

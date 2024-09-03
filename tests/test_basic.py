@@ -1,10 +1,10 @@
 import pytest
 
-import tonic_vitessce
+import angelolab_vitessce
 
 
 def test_package_has_version():
-    assert tonic_vitessce.__version__ is not None
+    assert angelolab_vitessce.__version__ is not None
 
 
 @pytest.mark.skip(reason="This decorator should be removed when test passes.")
